@@ -94,3 +94,16 @@
  #redwood-app{
    overflow: hidden;
  }
+
+ .bi
+{
+color: red;
+
+   display: block;
+   align-items: baseline;
+   margin-right: 10px;
+
+   text-decoration: none;
+   font-family: "Josefin" ,Sans-serif;
+
+}
