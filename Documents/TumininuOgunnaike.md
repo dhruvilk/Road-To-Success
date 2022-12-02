@@ -6,5 +6,7 @@
 [x]oct 31 : fixed horizontal bar
 [x]Nov 1 : created appointment item mockup https://www.figma.com/file/xzKJtEMjY2Sg7HJhiMIRVf/landing-page?node-id=0%3A1
 [x]oct 1 : created appointmentItem
+[x]Dec 1 : added logo to app banner
+
 
 
