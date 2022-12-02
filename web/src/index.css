@@ -97,13 +97,15 @@
 
  .bi
 {
-color: red;
+  color:var(--yellow);
+  margin-top: 20px;
 
-   display: block;
-   align-items: baseline;
-   margin-right: 10px;
 
-   text-decoration: none;
-   font-family: "Josefin" ,Sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+
+
+
+
 
 }
