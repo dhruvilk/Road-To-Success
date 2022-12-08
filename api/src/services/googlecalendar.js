@@ -1,4 +1,6 @@
-import { user, updateUser } from 'src/services/users'
+import { user } from 'src/services/users'
+
+import { decrypt } from './crypto'
 
 export const getEvents = async ({ start, end }) => {
   const { google } = require('googleapis')
@@ -12,6 +14,8 @@ export const getEvents = async ({ start, end }) => {
   const usr = await user({ id: userId })
 
   let tokens = JSON.parse(usr.tokens)
+  tokens = decrypt(tokens)
+  tokens = JSON.parse(tokens)
 
   oauth2Client.setCredentials(tokens)
 
