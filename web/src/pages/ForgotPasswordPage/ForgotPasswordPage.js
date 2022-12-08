@@ -8,6 +8,8 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const ForgotPasswordPage = () => {
   const { isAuthenticated, forgotPassword } = useAuth()
+  var randomNumber = Math.floor(Math.random() * 10000000);
+  console.log(randomNumber)
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -30,7 +32,7 @@ const ForgotPasswordPage = () => {
       // been invoked, let the user know how to get the link to reset their
       // password (sent in email, perhaps?)
       toast.success(
-        'A link to reset your password was sent to ' + response.email
+        'A link to reset your password was sent to ' + response.username
       )
 
       navigate(routes.login())
@@ -60,7 +62,7 @@ const ForgotPasswordPage = () => {
                       className="rw-label"
                       errorClassName="rw-label rw-label-error"
                     >
-                      Username
+                      E-mail
                     </Label>
                     <TextField
                       name="username"
