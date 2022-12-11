@@ -1,6 +1,6 @@
 import { DbAuthHandler } from '@redwoodjs/api'
-
 import { db } from 'src/lib/db'
+import { sendEmail } from 'src/lib/email'
 
 export const handler = async (event, context) => {
   const forgotPasswordOptions = {
@@ -16,8 +16,15 @@ export const handler = async (event, context) => {
     // You could use this return value to, for example, show the email
     // address in a toast message so the user will know it worked and where
     // to look for the email.
-    handler: (user) => {
-      return user
+
+    handler: async (user) => {
+      const res = await sendEmail({
+        to: user.email,
+        subject: 'Road to Success Reset Password',
+        text: `Hello!\nHere is the link into your browser to reset your password. Do not share this with anyone!: localhost:8910/reset-password?resetToken=${user.resetToken}`,
+        html: `<div><h2>Reset Password</h2><p>Follow the link below to reset your password. </p><p><a href="localhost:8910/reset-password?resetToken=${user.resetToken}">localhost:8910/reset-password?resetToken=${user.resetToken}</a></p></div>`,
+      })
+      return res
     },
 
     // How long the resetToken is valid for, in seconds (default is 24 hours)
@@ -67,8 +74,8 @@ export const handler = async (event, context) => {
     // the database. Returning anything truthy will automatically log the user
     // in. Return `false` otherwise, and in the Reset Password page redirect the
     // user to the login page.
-    handler: (_user) => {
-      return true
+    handler: (user) => {
+      return user
     },
 
     // If `false` then the new password MUST be different from the current one

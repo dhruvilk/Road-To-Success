@@ -9,7 +9,7 @@ export async function sendEmail({ to, subject, text, html }) {
     port: 587,
     secure: false, // true for 465, false for other ports
     auth: {
-      user: "your@email.com",
+      user: "sa2566@njit.edu",
       pass: process.env.SEND_IN_BLUE_KEY
     }
   })
