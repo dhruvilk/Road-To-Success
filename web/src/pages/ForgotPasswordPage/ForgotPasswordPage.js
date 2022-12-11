@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { useMutation } from '@redwoodjs/web'
 import { useAuth } from '@redwoodjs/auth'
 import { Form, Label, TextField, Submit, FieldError } from '@redwoodjs/forms'
 import { navigate, routes, Link } from '@redwoodjs/router'
@@ -32,7 +31,6 @@ const ForgotPasswordPage = () => {
       toast.success(
         'A link to reset your password was sent to ' + response.envelope.to[0]
       )
-
       navigate(routes.login())
     }
   }
