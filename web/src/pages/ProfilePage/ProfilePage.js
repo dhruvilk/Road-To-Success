@@ -61,7 +61,7 @@ const ProfilePage = () => {
                 <tr>
                   <td>Name</td>
                   <td>:</td>
-                  <td>Sam Bankman Fried</td>
+                  <td className>Sam Bankman Fried</td>
                 </tr>
                 <tr>
                   <td>Email</td>
