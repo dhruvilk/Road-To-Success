@@ -1,26 +1,30 @@
 /* eslint-disable no-unused-vars */
+import React, { useCallback } from 'react'
+
 import { Button } from '@chakra-ui/react'
-import React, { useCallback } from 'react';
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
-import particlesOptions from "./particles.json";
+import Particles from 'react-particles'
+import { loadFull } from 'tsparticles'
+
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
-import { MetaTags } from '@redwoodjs/web'
 import { Helmet } from '@redwoodjs/web'
+/* <<<<<<< appointmentList
+import AppointmentListsCell from '@redwoodjs/web' */
 
-import AppointmentsCell from 'src/components/AppointmentsCell'
-import TasksCell from 'src/components/TasksCell'
-import TaskView from 'src/components/TaskView/TaskView'
+// import AppointmentsCell from 'src/components/AppointmentsCell'
 import CalendarCell from 'src/components/CalendarCell'
+// import TasksCell from 'src/components/TasksCell'
+import TaskView from 'src/components/TaskView/TaskView'
+
+import particlesOptions from './particles.json'
 
 const authorizeApp = () => {
   window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https://www.googleapis.com/auth/calendar.events&include_granted_scopes=true&response_type=code&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URL}`
 }
 
 const LandingPage = () => {
-  const particlesInit = useCallback(main => {
-    loadFull(main);
+  const particlesInit = useCallback((main) => {
+    loadFull(main)
   }, [])
 
   const { isAuthenticated, currentUser, logOut } = useAuth()
@@ -30,21 +34,20 @@ const LandingPage = () => {
         <div className="navigation">
           <nav>
             <ul>
-              <li>
-              </li>
+              <li></li>
               <li>
                 {isAuthenticated ? (
-                    <>
-                      <Button
-                        style={{ color: 'black' }}
-                        onClick={() => authorizeApp()}
-                      >
-                        Sync with Google 📅{' '}
-                      </Button>{' '}
-                      <Button style={{ color: 'black' }} onClick={logOut}>
-                        Log Out 👋
-                      </Button>
-                    </>
+                  <>
+                    <Button
+                      style={{ color: 'black' }}
+                      onClick={() => authorizeApp()}
+                    >
+                      Sync with Google 📅{' '}
+                    </Button>{' '}
+                    <Button style={{ color: 'black' }} onClick={logOut}>
+                      Log Out 👋
+                    </Button>
+                  </>
                 ) : (
                   <Link to={routes.login()}>
                     <Button style={{ color: 'black' }}>Log In 🖋</Button>
@@ -53,7 +56,11 @@ const LandingPage = () => {
               </li>
               {currentUser ? (
                 <li
-                  style={{ fontSize: '1.7rem', fontWeight: '800', color: 'white' }}
+                  style={{
+                    fontSize: '1.7rem',
+                    fontWeight: '800',
+                    color: 'white',
+                  }}
                 >{`Signed in as ${currentUser.email}`}</li>
               ) : null}
               <li style={{ float: 'left', display: 'inline' }}>
@@ -70,9 +77,17 @@ const LandingPage = () => {
                 </svg>
               </li>
 
-              <li style={{ float: 'left', display: 'inline', padding: '20px 32px', fontSize: '30px' }}>
-                <Link to={routes.landingPage()} style={{ color: "white" }}>Road to Success</Link>
-
+              <li
+                style={{
+                  float: 'left',
+                  display: 'inline',
+                  padding: '20px 32px',
+                  fontSize: '30px',
+                }}
+              >
+                <Link to={routes.landingPage()} style={{ color: 'white' }}>
+                  Road to Success
+                </Link>
               </li>
             </ul>
           </nav>
@@ -82,7 +97,6 @@ const LandingPage = () => {
       <div className="horizontal-bar"></div>
 
       {!currentUser || !currentUser.gCalSyncEnabled ? (
-
         <div className="heading">
           <div className="particles">
             <Particles options={particlesOptions} init={particlesInit} />
@@ -107,7 +121,10 @@ const LandingPage = () => {
             end={'2023-11-01T12:00:00Z'}
           /> */}
             {/* <TaskCell user_id={currentUser.id} /> */}
-            <CalendarCell start={'2021-11-01T12:00:00Z'} end={'2024-11-01T12:00:00Z'}/>
+            <CalendarCell
+              start={'2021-11-01T12:00:00Z'}
+              end={'2024-11-01T12:00:00Z'}
+            />
             <TaskView user_id={currentUser.id} />
           </div>
         </div>
@@ -115,11 +132,9 @@ const LandingPage = () => {
         <div></div>
       )}
 
-
-
+      <div className="footer"></div>
     </>
   )
 }
 
 export default LandingPage
-

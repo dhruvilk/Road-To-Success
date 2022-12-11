@@ -62,7 +62,7 @@ const SignupPage = () => {
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
                   >
-                    Username
+                    Email
                   </Label>
                   <TextField
                     name="username"
@@ -70,9 +70,12 @@ const SignupPage = () => {
                     errorClassName="rw-input rw-input-error"
                     ref={usernameRef}
                     validation={{
+                      pattern: {
+                        value: /[^@]+@[^\.]+\..+/,
+                      },
                       required: {
                         value: true,
-                        message: 'Username is required',
+                        message: 'Email is required',
                       },
                     }}
                   />

@@ -1,6 +1,8 @@
-import { useMutation } from "@redwoodjs/web"
-import TaskCard from "../TaskCard/TaskCard"
 import { Divider, Select, toast } from '@chakra-ui/react'
+
+import { useMutation } from '@redwoodjs/web'
+
+import TaskCard from '../TaskCard/TaskCard'
 export const QUERY = gql`
   query FindTaskQuery($user_id: Int!) {
     tasks(user_id: $user_id) {
@@ -27,8 +29,12 @@ export const Success = ({ tasks }) => {
   return (
     <ul style={{ listStyleType: 'none' }}>
       {tasks.map((item) => {
-        if(item.status_id != 5) {
-        return <li key={item.id}><TaskCard task={item} /></li>
+        if (item.status_id != 5) {
+          return (
+            <li key={item.id}>
+              <TaskCard task={item} />
+            </li>
+          )
         }
       })}
     </ul>

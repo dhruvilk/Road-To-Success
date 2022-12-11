@@ -1,6 +1,9 @@
-import { DbAuthHandler } from '@redwoodjs/api'
+
+import { DbAuthHandler, PasswordValidationError } from '@redwoodjs/api'
 import { db } from 'src/lib/db'
 import { sendEmail } from 'src/lib/email'
+
+// const nodemailer = require('nodemailer') //added nodemailer
 
 export const handler = async (event, context) => {
   const forgotPasswordOptions = {
@@ -25,8 +28,8 @@ export const handler = async (event, context) => {
         html: `<div><h2>Reset Password</h2><p>Hello!\nClick or paste this link into your browser to reset your account password. Do not share this with anyone!</p><p><a href="localhost:8910/reset-password?resetToken=${user.resetToken}">localhost:8910/reset-password?resetToken=${user.resetToken}</a></p></div>`,
       })
       return res
-    },
 
+    
     // How long the resetToken is valid for, in seconds (default is 24 hours)
     expires: 60 * 60 * 24,
 
@@ -115,7 +118,7 @@ export const handler = async (event, context) => {
           email: username,
           hashedPassword: hashedPassword,
           salt: salt,
-          // name: userAttributes.name
+          name: userAttributes.name,
         },
       })
     },
@@ -123,10 +126,31 @@ export const handler = async (event, context) => {
     // Include any format checks for password here. Return `true` if the
     // password is valid, otherwise throw a `PasswordValidationError`.
     // Import the error along with `DbAuthHandler` from `@redwoodjs/api` above.
+
+    // changed by dhruv for password strength. if statements, regex
     passwordValidation: (_password) => {
+      var minNumberofChars = 6
+      var maxNumberofChars = 16
+      var passwordRegEx =
+        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+
+      if (
+        _password.length < minNumberofChars ||
+        _password.length > maxNumberofChars
+      ) {
+        throw new PasswordValidationError(
+          'Password must be between 6 and 16 characters'
+        )
+      }
+
+      if (!_password.match(passwordRegEx)) {
+        throw new PasswordValidationError(
+          'Password should contain atleast one number, uppercase character, and one special character'
+        )
+      }
       return true
     },
-
+    // end of changed by dhruv
     errors: {
       // `field` will be either "username" or "password"
       fieldMissing: '${field} is required',

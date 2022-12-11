@@ -33,7 +33,6 @@ model Task {
   status_id Int
   title     String?
   details   String?
-  urgency   Int
   priority  Int
   date      DateTime
   createdAt DateTime @default(now())
@@ -47,4 +46,12 @@ model Appointment {
   title     String?
   createdAt DateTime @default(now())
   User      User?    @relation(fields: [user_id], references: [id])
+}
+model AppointmentList {
+  id        Int      @id @default(autoincrement())
+  date      DateTime
+  user_id   Int?
+  title     String?
+  createdAt DateTime @default(now())
+  
 }
