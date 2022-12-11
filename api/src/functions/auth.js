@@ -1,9 +1,7 @@
-import { DbAuthHandler, PasswordValidationError } from '@redwoodjs/api'
+import { DbAuthHandler } from '@redwoodjs/api'
 
-
-import { sendEmail } from 'src/lib/email'
 import { db } from 'src/lib/db'
-
+import { sendEmail } from 'src/lib/email'
 
 export const handler = async (event, context) => {
   const forgotPasswordOptions = {
@@ -19,7 +17,7 @@ export const handler = async (event, context) => {
     // You could use this return value to, for example, show the email
     // address in a toast message so the user will know it worked and where
     // to look for the email.
-    // testing forgor password
+
     handler: async (user) => {
       const res = await sendEmail({
         to: user.email,
@@ -77,8 +75,8 @@ export const handler = async (event, context) => {
     // the database. Returning anything truthy will automatically log the user
     // in. Return `false` otherwise, and in the Reset Password page redirect the
     // user to the login page.
-    handler: (_user) => {
-      return true
+    handler: (user) => {
+      return user
     },
 
     // If `false` then the new password MUST be different from the current one
@@ -127,26 +125,6 @@ export const handler = async (event, context) => {
     // password is valid, otherwise throw a `PasswordValidationError`.
     // Import the error along with `DbAuthHandler` from `@redwoodjs/api` above.
     passwordValidation: (_password) => {
-      var minNumberofChars = 6
-      var maxNumberofChars = 16
-      var passwordRegEx =
-        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
-
-      if (
-        _password.length < minNumberofChars ||
-        _password.length > maxNumberofChars
-      ) {
-        throw new PasswordValidationError(
-          'Password must be between 6 and 16 characters'
-        )
-      }
-
-      if (!_password.match(passwordRegEx)) {
-        throw new PasswordValidationError(
-          'password should contain atleast one number and one special character'
-        )
-      }
-
       return true
     },
 

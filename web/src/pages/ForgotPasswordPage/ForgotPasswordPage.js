@@ -33,6 +33,7 @@ const ForgotPasswordPage = () => {
       toast.success(
         'A link to reset your password was sent to ' + response.envelope.to[0]
       )
+
       navigate(routes.login())
     }
   }
