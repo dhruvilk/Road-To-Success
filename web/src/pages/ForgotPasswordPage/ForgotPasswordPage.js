@@ -8,8 +8,6 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const ForgotPasswordPage = () => {
   const { isAuthenticated, forgotPassword } = useAuth()
-  var randomNumber = Math.floor(Math.random() * 10000000);
-  console.log(randomNumber)
 
   useEffect(() => {
     if (isAuthenticated) {
