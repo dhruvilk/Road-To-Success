@@ -21,7 +21,7 @@ export const handler = async (event, context) => {
       const res = await sendEmail({
         to: user.email,
         subject: 'Road to Success Reset Password',
-        text: `Hello!\nHere is the link into your browser to reset your password. Do not share this with anyone!: localhost:8910/reset-password?resetToken=${user.resetToken}`,
+        text: `Hello!\nHere is the link to reset your password. Do not share this with anyone!: localhost:8910/reset-password?resetToken=${user.resetToken}`,
         html: `<div><h2>Reset Password</h2><p>Hello!\nClick or paste this link into your browser to reset your account password. Do not share this with anyone!</p><p><a href="localhost:8910/reset-password?resetToken=${user.resetToken}">localhost:8910/reset-password?resetToken=${user.resetToken}</a></p></div>`,
       })
       return res
