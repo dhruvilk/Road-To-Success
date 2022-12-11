@@ -1,6 +1,7 @@
-import { DbAuthHandler, PasswordValidationError } from '@redwoodjs/api'
 
+import { DbAuthHandler, PasswordValidationError } from '@redwoodjs/api'
 import { db } from 'src/lib/db'
+import { sendEmail } from 'src/lib/email'
 
 // const nodemailer = require('nodemailer') //added nodemailer
 
@@ -18,33 +19,17 @@ export const handler = async (event, context) => {
     // You could use this return value to, for example, show the email
     // address in a toast message so the user will know it worked and where
     // to look for the email.
-    // testing forgor password
-    handler: async (user) => {
-      // try {
-      //   let transporter = nodemailer.createTransport({
-      //     host: process.env.SMTP_HOST,
-      //     port: process.env.SMTP_PORT,
-      //     secure: true,
-      //     auth: {
-      //       user: process.env.SMTP_USER,
-      //       pass: process.env.SMTP_PASS,
-      //     },
-      //   })
-      //   const resetLink = `${process.env.APP_URL}/reset-password?resetToken=${user.resetToken}`
-      //   const message = {
-      //     from: process.env.AUTH_EMAIL_FROM,
-      //     to: user.email,
-      //     subject: 'Reset Forgotten Password',
-      //     html: `Here is a link reset your password.  It will expire after 4hrs. <a href="${resetLink}">Reset my Password</>`,
-      //   }
-      //   await transporter.sendMail(message)
-      // } catch (err) {
-      //   console.error(err)
-      // }
 
-      return user
-    },
-    // end testing forgor password
+    handler: async (user) => {
+      const res = await sendEmail({
+        to: user.email,
+        subject: 'Road to Success Reset Password',
+        text: `Hello!\nHere is the link to reset your password. Do not share this with anyone!: localhost:8910/reset-password?resetToken=${user.resetToken}`,
+        html: `<div><h2>Reset Password</h2><p>Hello!\nClick or paste this link into your browser to reset your account password. Do not share this with anyone!</p><p><a href="localhost:8910/reset-password?resetToken=${user.resetToken}">localhost:8910/reset-password?resetToken=${user.resetToken}</a></p></div>`,
+      })
+      return res
+
+    
     // How long the resetToken is valid for, in seconds (default is 24 hours)
     expires: 60 * 60 * 24,
 
@@ -92,8 +77,8 @@ export const handler = async (event, context) => {
     // the database. Returning anything truthy will automatically log the user
     // in. Return `false` otherwise, and in the Reset Password page redirect the
     // user to the login page.
-    handler: (_user) => {
-      return true
+    handler: (user) => {
+      return user
     },
 
     // If `false` then the new password MUST be different from the current one
