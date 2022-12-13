@@ -4,6 +4,8 @@ import BannerLayout from './layouts/BannerLayout/BannerLayout'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/verification-reset" page={VerificationResetPage} name="verificationReset" />
+      <Route path="/verification" page={VerificationPage} name="verification" />
       <Set wrap={BannerLayout}>
         <Route path="/authcallback" page={AuthCallbackPage} name="authCallback" />
         <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />

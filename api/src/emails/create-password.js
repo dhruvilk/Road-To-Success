@@ -1,0 +1,20 @@
+import { logger } from '../lib/logger'
+import { userNameWithFallback } from '../lib/username'
+const email = {
+  subject: () => `${process.env.APP_NAME}, Welcome`,
+  htmlBody: (user) => {
+    const link = `${process.env.DOMAIN}/create-password?token=${user.resetToken}`
+    const appName = process.env.APP_NAME
+    if (process.env.NODE_ENV === 'development') {
+      logger.debug(link)
+    }
+    return `
+        <div> Hi ${userNameWithFallback(user)}, </div>
+        <p>Please find below a link to establish your account for the ${appName}:</p>
+        <a href="${link}">${link}</a>
+        <p>If you did not request an account, please ignore this email.</p>
+      `
+  },
+}
+export { email }
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJsb2dnZXIiLCJ1c2VyTmFtZVdpdGhGYWxsYmFjayIsImVtYWlsIiwic3ViamVjdCIsInByb2Nlc3MiLCJlbnYiLCJBUFBfTkFNRSIsImh0bWxCb2R5IiwidXNlciIsImxpbmsiLCJET01BSU4iLCJyZXNldFRva2VuIiwiYXBwTmFtZSIsIk5PREVfRU5WIiwiZGVidWciXSwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9hcGkvc3JjL2VtYWlscy9jcmVhdGUtcGFzc3dvcmQudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHR5cGUgeyBVc2VyIH0gZnJvbSAnQHByaXNtYS9jbGllbnQnXG5cbmltcG9ydCB7IGxvZ2dlciB9IGZyb20gJ3NyYy9saWIvbG9nZ2VyJ1xuaW1wb3J0IHsgdXNlck5hbWVXaXRoRmFsbGJhY2sgfSBmcm9tICdzcmMvbGliL3VzZXJuYW1lJ1xuXG5jb25zdCBlbWFpbCA9IHtcbiAgc3ViamVjdDogKCkgPT4gYCR7cHJvY2Vzcy5lbnYuQVBQX05BTUV9LCBXZWxjb21lYCxcbiAgaHRtbEJvZHk6ICh1c2VyOiBVc2VyKSA9PiB7XG4gICAgY29uc3QgbGluayA9IGAke3Byb2Nlc3MuZW52LkRPTUFJTn0vY3JlYXRlLXBhc3N3b3JkP3Rva2VuPSR7dXNlci5yZXNldFRva2VufWBcbiAgICBjb25zdCBhcHBOYW1lID0gcHJvY2Vzcy5lbnYuQVBQX05BTUVcblxuICAgIGlmIChwcm9jZXNzLmVudi5OT0RFX0VOViA9PT0gJ2RldmVsb3BtZW50Jykge1xuICAgICAgbG9nZ2VyLmRlYnVnKGxpbmspXG4gICAgfVxuXG4gICAgcmV0dXJuIGBcbiAgICAgICAgPGRpdj4gSGkgJHt1c2VyTmFtZVdpdGhGYWxsYmFjayh1c2VyKX0sIDwvZGl2PlxuICAgICAgICA8cD5QbGVhc2UgZmluZCBiZWxvdyBhIGxpbmsgdG8gZXN0YWJsaXNoIHlvdXIgYWNjb3VudCBmb3IgdGhlICR7YXBwTmFtZX06PC9wPlxuICAgICAgICA8YSBocmVmPVwiJHtsaW5rfVwiPiR7bGlua308L2E+XG4gICAgICAgIDxwPklmIHlvdSBkaWQgbm90IHJlcXVlc3QgYW4gYWNjb3VudCwgcGxlYXNlIGlnbm9yZSB0aGlzIGVtYWlsLjwvcD5cbiAgICAgIGBcbiAgfSxcbn1cblxuZXhwb3J0IHsgZW1haWwgfVxuIl0sIm1hcHBpbmdzIjoiQUFFQSxTQUFTQSxNQUFNO0FBQ2YsU0FBU0Msb0JBQW9CO0FBRTdCLE1BQU1DLEtBQUssR0FBRztFQUNaQyxPQUFPLEVBQUUsTUFBTyxHQUFFQyxPQUFPLENBQUNDLEdBQUcsQ0FBQ0MsUUFBUyxXQUFVO0VBQ2pEQyxRQUFRLEVBQUdDLElBQVUsSUFBSztJQUN4QixNQUFNQyxJQUFJLEdBQUksR0FBRUwsT0FBTyxDQUFDQyxHQUFHLENBQUNLLE1BQU8sMEJBQXlCRixJQUFJLENBQUNHLFVBQVcsRUFBQztJQUM3RSxNQUFNQyxPQUFPLEdBQUdSLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDQyxRQUFRO0lBRXBDLElBQUlGLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDUSxRQUFRLEtBQUssYUFBYSxFQUFFO01BQzFDYixNQUFNLENBQUNjLEtBQUssQ0FBQ0wsSUFBSSxDQUFDO0lBQ3BCO0lBRUEsT0FBUTtBQUNaLG1CQUFtQlIsb0JBQW9CLENBQUNPLElBQUksQ0FBRTtBQUM5Qyx3RUFBd0VJLE9BQVE7QUFDaEYsbUJBQW1CSCxJQUFLLEtBQUlBLElBQUs7QUFDakM7QUFDQSxPQUFPO0VBQ0w7QUFDRixDQUFDO0FBRUQsU0FBU1AsS0FBSyJ9
