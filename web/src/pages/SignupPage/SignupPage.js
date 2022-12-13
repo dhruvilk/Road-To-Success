@@ -30,7 +30,7 @@ const SignupPage = () => {
   }, [])
 
   const onSubmit = async (data) => {
-    const response = await signUp({ ...data })
+    /*const response = await signUp({ ...data })
 
     if (response.message) {
       toast(response.message)
@@ -39,7 +39,9 @@ const SignupPage = () => {
     } else {
       // user is signed in automatically
       toast.success('Welcome!')
-    }
+    }*/
+    console.log('submit works')
+    toast.success('Welcome!')
   }
 
   return (

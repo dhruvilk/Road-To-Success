@@ -92,10 +92,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auth0/auth0-spa-js@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@auth0/auth0-spa-js@npm:2.0.0"
-  checksum: 978035c158f5e0a02e9bc8f6e14af9e4b1a5aa5c6e8684cc44137759a5dfb0f6f99389e0799027174558c48d716d1c8a22cf76e08d949cf0b41fc468446d74d5
+"@auth0/auth0-spa-js@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@auth0/auth0-spa-js@npm:2.0.1"
+  checksum: 21bdf8f7767cde60e8b9924b7c3c1391acca329e25582e71b1a1b50fb520cd5992dd7b36401456e10ca8b0de95b8a3579c7996b98fe831d4f523adb301760aed
   languageName: node
   linkType: hard
 
@@ -7994,7 +7994,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/user-event@npm:14.4.3":
+"@testing-library/user-event@npm:14.4.3, @testing-library/user-event@npm:^14.4.3":
   version: 14.4.3
   resolution: "@testing-library/user-event@npm:14.4.3"
   peerDependencies:
@@ -23330,7 +23330,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@auth0/auth0-spa-js": ^2.0.0
+    "@auth0/auth0-spa-js": ^2.0.1
     "@chakra-ui/icons": ^2.0.13
     "@chakra-ui/react": ^2.3.6
     "@emotion/react": ^11.10.5
@@ -26813,6 +26813,7 @@ __metadata:
     "@redwoodjs/forms": 3.2.0
     "@redwoodjs/router": 3.2.0
     "@redwoodjs/web": 3.2.0
+    "@testing-library/user-event": ^14.4.3
     framer-motion: ^6.5.1
     prop-types: 15.8.1
     react: 17.0.2

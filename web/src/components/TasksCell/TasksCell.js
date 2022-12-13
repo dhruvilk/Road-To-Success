@@ -4,8 +4,8 @@ import { useMutation } from '@redwoodjs/web'
 
 import TaskCard from '../TaskCard/TaskCard'
 export const QUERY = gql`
-  query FindTaskQuery($user_id: Int!) {
-    tasks(user_id: $user_id) {
+  query FindTaskQuery($date: DateTime!){
+    getByDate(date: $date){
       id
       user_id
       title
@@ -13,9 +13,29 @@ export const QUERY = gql`
       status_id
       urgency
       priority
+      date
     }
   }
 `
+
+// console.log(date);
+
+// export const QUERY = gql`
+//   query FindTaskQuery{
+//     tasks{
+//       id
+//       user_id
+//       title
+//       details
+//       status_id
+//       urgency
+//       priority
+//       date
+//     }
+//   }
+// `
+
+
 
 export const Loading = () => <div>Loading...</div>
 
@@ -25,16 +45,14 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({ tasks }) => {
+export const Success = ({ getByDate }) => {
+
   return (
     <ul style={{ listStyleType: 'none' }}>
-      {tasks.map((item) => {
-        if (item.status_id != 5) {
-          return (
-            <li key={item.id}>
-              <TaskCard task={item} />
-            </li>
-          )
+
+      {getByDate.map((item) => {
+        if(item.status_id != 5) {
+        return <li key={item.id}><TaskCard task={item} /></li>
         }
       })}
     </ul>

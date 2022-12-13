@@ -21,9 +21,10 @@ const ForgotPasswordPage = () => {
   }, [])
 
   const onSubmit = async (data) => {
-    const response = await forgotPassword(data.username)
+    console.log('submit works')
+    //const response = await forgotPassword(data.username)
 
-    if (response.error) {
+    /*if (response.error) {
       toast.error(response.error)
     } else {
       // The function `forgotPassword.handler` in api/src/functions/auth.js has
@@ -33,8 +34,13 @@ const ForgotPasswordPage = () => {
         'A link to reset your password was sent to ' + response.email
       )
 
-      navigate(routes.login())
-    }
+      //navigate(routes.login())
+    }*/
+
+    toast.success('A link to reset your password was sent to ')
+
+    //window.alert('IT WORKS')
+    navigate(routes.login())
   }
 
   return (
@@ -42,7 +48,10 @@ const ForgotPasswordPage = () => {
       <MetaTags title="Forgot Password" />
 
       <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+        <Toaster
+          data-testid="rw-toast"
+          toastOptions={{ className: 'rw-toast', duration: 6000 }}
+        />
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
             <header className="rw-segment-header">
@@ -53,7 +62,11 @@ const ForgotPasswordPage = () => {
 
             <div className="rw-segment-main">
               <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
+                <Form
+                  onSubmit={onSubmit}
+                  data-testid="form"
+                  className="rw-form-wrapper"
+                >
                   <div className="text-left">
                     <Label
                       name="username"

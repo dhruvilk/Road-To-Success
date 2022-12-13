@@ -1,12 +1,6 @@
-import { render } from '@redwoodjs/testing/web'
+import { render, screen } from '@redwoodjs/testing/web'
 import { Loading, Empty, Failure, Success } from './TasksCell'
 import { standard } from './TasksCell.mock'
-
-// Generated boilerplate tests do not account for all circumstances
-// and can fail without adjustments, e.g. Float and DateTime types.
-//           Please refer to the RedwoodJS Testing Docs:
-//        https://redwoodjs.com/docs/testing#testing-cells
-// https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
 describe('TasksCell', () => {
   it('renders Loading successfully', () => {
@@ -27,15 +21,33 @@ describe('TasksCell', () => {
     }).not.toThrow()
   })
 
-  // When you're ready to test the actual output of your component render
-  // you could test that, for example, certain text is present:
-  //
-  // 1. import { screen } from '@redwoodjs/testing/web'
-  // 2. Add test: expect(screen.getByText('Hello, world')).toBeInTheDocument()
-
   it('renders Success successfully', async () => {
     expect(() => {
       render(<Success tasks={standard().tasks} />)
     }).not.toThrow()
+  })
+
+  it('Shows Multiple tasks', async () => {
+    render(<Success tasks={standard().tasks}/>)
+    expect(screen.getByText("Task 1")).toBeInTheDocument()
+    expect(screen.getByText("Task 2")).toBeInTheDocument()
+    expect(screen.getByText("Task 3")).toBeInTheDocument()
+    expect(screen.getByText("Task 4")).toBeInTheDocument()
+    expect(screen.queryByText("Task 5")).not.toBeInTheDocument()
+  })
+
+  it('Shows task Urgency', async () => {
+    render(<Success tasks={standard().tasks}/>)
+    expect(screen.queryAllByText("Low").length).toEqual(1)
+    expect(screen.queryAllByText("High").length).toEqual(2)
+    expect(screen.queryAllByText("Medium").length).toEqual(1)
+  })
+
+  it('Shows task Complettion', async () => {
+    render(<Success tasks={standard().tasks}/>)
+    expect(screen.getByText("Not Started")).toBeInTheDocument()
+    expect(screen.getByText("Started")).toBeInTheDocument()
+    expect(screen.getByText("Completed")).toBeInTheDocument()
+    expect(screen.getByText("Rolled Over")).toBeInTheDocument()
   })
 })

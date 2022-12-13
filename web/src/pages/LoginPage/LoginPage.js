@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import React, { useEffect } from 'react'
 
 import { gapi } from 'gapi-script'
-// import { GoogleLogin, GoogleLogout } from 'react-google-login'
 
 import { useAuth } from '@redwoodjs/auth'
 import {
@@ -18,7 +17,6 @@ import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const LoginPage = () => {
-  // const [profile, setProfile] = useState(null)
   const clientId = process.env.CLIENT_ID
   useEffect(() => {
     const initClient = () => {
@@ -30,14 +28,7 @@ const LoginPage = () => {
     gapi.load('client:auth2', initClient)
   })
 
-  // const onSuccess = (res) => {
-  //   setProfile(res.profileObj)
-  //   console.log('Login Success: currentUser:', res.profileObj)
-  // }
-
-  // const onFailure = (err) => {
-  //   console.log('failed', err)
-  // }
+  const [profile, setProfile] = useState(null)
 
   const { isAuthenticated, logIn } = useAuth()
 
@@ -136,14 +127,7 @@ const LoginPage = () => {
                     <Submit className="rw-button rw-button-blue">Login</Submit>
                   </div>
                 </Form>
-                {/* <GoogleLogin
-                  clientId={clientId}
-                  buttonText="Sign in with Google"
-                  onSuccess={onSuccess}
-                  onFailure={onFailure}
-                  cookiePolicy={'single_host_origin'}
-                  isSignedIn={true}
-                /> */}
+
               </div>
             </div>
           </div>

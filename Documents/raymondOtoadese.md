@@ -1,0 +1,37 @@
+#                           Dhruvil Kansara CS490-103 "Road to Success"
+
+### ```Sprint 1 (Oct19-Nov2)```
++ I worked on planning for the profile and Ui Designs I picked up profile page and Weekly calender work
+
++ Read a few tutorials so i can get a better understanding of redwood so we i knew how to approach the project
+
+### ```Sprint 2 (Nov3-Nov16)```
++ moved profile page to in progress
+
++ and started working on it faced some issues with some errors but got advised  on how to fix it from my team on discord
+
+
+### ```Sprint 3 (Nov17-Nov30)```
++ Worked on the weekly calendar page
+
++ Someone else ended up completing it
+
++ i went back to the profile page to complete it.
+
+
+### ```Sprint 4 (Dec1-Dec14)```
++ Redesigned the  profile page to go with the new colors on the markdown page
+
++ worked on figuring out how the page to implement the API.
+
++ This is how the page looked after final day of UI work.
+
+
+<br>
+<!--<div id="header" align="center">-->
+  <img src="https://cdn.discordapp.com/attachments/1034512610235797666/1051944033586516038/Screen_Shot_2022-12-12_at_2.29.49_PM.png"/>
+</div>
+<br>
+
+
+

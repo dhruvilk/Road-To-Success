@@ -40,6 +40,8 @@ const TaskCard = ({ task }) => {
   else if (task.status_id == 4) { //rolled over
     initColor = 'yellow.100';
   }
+  //hacky style testing
+  const style = ["not-started-task","started-task","completed-task","rolled-over-task"]
   const [statusText, setStatusText] = useState(task.status_id);
   const [statusColor, setStatusColor] = useState(initColor);
   const [urgencyText, setUrgencyText] = useState(task.urgency);
@@ -63,12 +65,12 @@ const TaskCard = ({ task }) => {
     }
   }, [statusText, urgencyText, priorityText]);
 
-
   return (
+
     <>
       {statusText != 5 ?
-        <Flex direction='row' justifyContent='space-between' background={statusColor} p={1} rounded={6} margin={1}>
-          <Flex >
+        <Flex className={style[statusText-1]} background={statusColor} p={1} rounded={6} margin={1}>
+          <Flex>
             <button onClick={() => {
               setStatusText(statusText == 1 ? 2 : statusText == 2 ? 3 : statusText == 3 ? 4 : 1);
               setStatusColor(statusText == 1 ? 'blue.100' : statusText == 2 ? 'green.100' : statusText == 3 ? 'yellow.100' : 'red.100');
@@ -101,8 +103,9 @@ const TaskCard = ({ task }) => {
             variant="solid"
             size="sm"
             m={1}
+
           >
-            <DeleteIcon color="white.500" />
+            <DeleteIcon color="white.500"/>
           </Button>
         </Flex>
         :

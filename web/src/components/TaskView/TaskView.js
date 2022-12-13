@@ -1,23 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
-import { Box, Divider, Flex } from '@chakra-ui/react'
-
-import {
-  FieldError,
-  Form,
-  Label,
-  InputField,
-  TextField,
-  TextAreaField,
-  SelectField,
-  Submit,
-  useForm,
-} from '@redwoodjs/forms'
+import TasksCell from 'src/components/TasksCell'
+import { Box, Divider, Flex } from "@chakra-ui/react"
+import { FieldError, Form, Label, InputField, TextField, TextAreaField, SelectField, Submit, useForm } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import TasksCell from 'src/components/TasksCell'
 import { QUERY as tasksQuery } from 'src/components/TasksCell'
+import './../../index.css'
 
 const CREATE_TASK = gql`
   mutation CreateTaskMutation($input: CreateTaskInput!) {
@@ -29,35 +20,38 @@ const CREATE_TASK = gql`
 
 const TaskView = ({ user_id }) => {
   const formMethods = useForm()
-
   const [createTask] = useMutation(CREATE_TASK, {
     onCompleted: () => {
-      //toast.Success("Task Created")
+      toast.success("Task Created"),
       formMethods.reset()
     },
-    refetchQueries: [{ query: tasksQuery, variables: { user_id } }],
+    refetchQueries: [{ query: tasksQuery, variables: { user_id } }]
   })
 
+
+
+  // current date state
+  const color = 'rgb(255,255,255)';
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  let yyyy = today.getFullYear();
+  today = mm + '-' + dd + '-' + yyyy;
+  const [date, setDate] = useState(today);
+
   const onSubmit = (data) => {
-    const now = new Date()
-    createTask({
-      variables: { input: { user_id: user_id, date: now, ...data } },
-    })
+    let dateArr = date.split('-');
+    let month = dateArr[0];
+    let day = dateArr[1];
+    let year = dateArr[2];
+
+
+    const newdate = new Date(year, month - 1, day).toISOString();
+    createTask({ variables: { input: { "user_id": user_id, date: newdate, ...data } } })
     //TODO: task date (type dateTime) should be date of listed in component
     //TODO: remove user_id from query when api team updates function signature
   }
 
-  // current date state
-  const color = 'rgb(255,255,255)'
-  let today = new Date()
-  let dd = String(today.getDate()).padStart(2, '0')
-  let mm = String(today.getMonth() + 1).padStart(2, '0') //January is 0!
-  let yyyy = today.getFullYear()
-  today = mm + '-' + dd + '-' + yyyy
-  const [date, setDate] = useState(today)
-  useEffect(() => {
-    // get current date in digits only
-  }, [])
 
   //change date format from mm-dd-yyyy to yyyy-mm-dd for html date input
   function htmlDate(date) {
@@ -89,16 +83,39 @@ const TaskView = ({ user_id }) => {
     }
     setDate(stringdate)
     //select dateinput and set to newDateString
-    document.getElementById('dateinput').value = stringdate
+
+
+    document.getElementById("dateinput").value = stringdate;
+
   }
+
+  //convert date to yyyy-mm-dd format
+  function convertDate(date) {
+    let dateArr = date.split('-');
+    let month = dateArr[0];
+    let day = dateArr[1];
+    let year = dateArr[2];
+
+    let dayOne = new Date(year, month - 1, day).toISOString();
+
+    return dayOne;
+
+  }
+
+
+
+  //2022-12-01T22:06:51.226Z
+
+
   return (
     <>
       {/* alligned horizontally */}
-      <div className="TaskView">
-        <Flex direction="column" background={color} rounded={6} p={3}>
-          <Box fontSize="2xl">
-            <Flex justifyContent="space-between">
-              <h1 style={{ margin: '0px 60px 0px 0px' }}>To Do List</h1>
+
+      <div className='TaskView'>
+        <Flex direction='column' background={color} rounded={6}>
+          <Box fontSize='2xl'>
+            <Flex justifyContent='space-between' >
+              <h1 style={{ margin: "0px 60px 0px 0px" }}>To Do List</h1>
               {/* input for date */}
               {/* TODO: remove date change code from this component - rely on calendar date range */}
               <div>
@@ -120,26 +137,24 @@ const TaskView = ({ user_id }) => {
             </Flex>
           </Box>
           <Divider />
-          <Flex
-            style={{ display: 'none' }}
-            direction="row"
-            justifyContent="space-between"
-          >
+
+          <Flex style={{ display: "none" }} direction='row' justifyContent='space-between'>
             <h4>Status</h4>
             <h4>Name</h4>
             <h4>Urgency</h4>
             <h4>Priority</h4>
           </Flex>
 
-          <TasksCell user_id={user_id} />
+
+
+          {/* date={time} */}
+          <TasksCell date={convertDate(date)} />
+
 
           <Divider m={1} />
-          <p style={{ fontSize: '1.4rem' }}>Add task:</p>
-          <Form
-            formMethods={formMethods}
-            style={{ display: 'flex', flexDirection: 'column' }}
-            onSubmit={onSubmit}
-          >
+          <p style={{ fontSize: "1.4rem" }}>Add task:</p>
+          <Form formMethods={formMethods} style={{ display: 'flex', flexDirection: "column" }} onSubmit={onSubmit}>
+
             <div className="formGroup">
               <Label>Status</Label>
               <SelectField
@@ -171,8 +186,9 @@ const TaskView = ({ user_id }) => {
               <Label>Priority</Label>
               <TextField type="number" name="priority" placeholder="Priority" />
             </div>
+            
+            <Submit className="fc-button-primary">Save</Submit>
 
-            <Submit className="button">Save</Submit>
           </Form>
 
           <p className="hidden">{date}</p>

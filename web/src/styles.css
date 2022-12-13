@@ -1,0 +1,183 @@
+.mb-nav{
+  background-image: linear-gradient(to bottom, rgba(112,44,249, 1), rgba(112,44,249, 0.95));
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%), inset 0 -1px 0 rgb(0 0 0 / 15%);
+  padding: .75rem 0;
+  display: flex;
+  align-items: center;
+  font-family: 'Lato';
+}
+
+.mb-nav-link-container{
+  margin-left: auto;
+  background: transparent;
+}
+
+.mb-nav button{
+  background: transparent;
+  border: 1px dotted white;
+  color: white;
+  margin-right: 0.75rem;
+  padding: 1px 17px 1px 17px;
+  font-weight: 600;
+}
+
+.mb-nav button:hover{
+  background: transparent;
+  border: 2px dotted white;
+  padding: 0px 16px 0px 16px;
+}
+
+.mb-nav-logo{
+  padding-left: 0.75rem;
+  font-weight: 900;
+  font-size: 2.3rem;
+  color: white;
+  line-height: 2.3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.col-flex{
+  display: flex;
+  flex-direction: column;
+}
+
+.mb-heading{
+  font-weight: 900;
+  margin: 1rem auto 3rem auto;
+  color: #3c3c3c;
+  font-size: 96px;
+  line-height: 96px;
+  text-align: center;
+  background-image: linear-gradient(90deg, rgba(0,213,255,1) 0%, rgba(0,33,255,1) 48%, rgba(229,0,255,1) 100%); /*linear-gradient(to right, #09f1b8, #00a2ff, #ff00d2, #fed90f);*/
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: white;
+  -webkit-text-stroke: 9px transparent;
+  letter-spacing: 0.3rem;
+  padding: 1rem;
+}
+
+.p-30{
+  padding: 30px;
+}
+
+.sub-header{
+  width: min(800px, 90%);
+  text-align: center;
+  margin: auto;
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #3c3c3c;
+  background: white;
+}
+
+#calendarContainer{
+  background: white;
+  box-shadow: 0px 0px 6px #bbbbbb;
+  border-radius: 6px;
+  margin: 1rem 1rem 0rem 0rem;
+  padding: 1rem;
+  flex: auto;
+  height: auto;
+  max-height: calc(100vh - 64px - 2rem);
+}
+
+#taskviewContainer{
+  background: white;
+  min-width: min-content;
+  height: fit-content;
+  box-shadow: 0px 0px 6px #bbbbbb;
+  border-radius: 6px;
+  margin: 1rem 1rem 1rem 0rem;
+  padding: 1rem;
+  padding-bottom: 0rem;
+  max-height: calc(100vh - 64px - 2rem);
+  overflow: scroll;
+}
+
+.mb-main{
+  min-height: calc(100vh - 64px);
+  background: rgba(206,206,206,.5);
+  display: flex;
+  flex-direction: row;
+  padding: 0rem 0rem 0rem 1rem;
+}
+
+@media screen and (max-width: 1115px) {
+  .mb-main{
+    flex-direction: column !important;
+  }
+  #taskviewContainer{
+    max-height: none !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.completed-task{
+  display: flex;
+  justify-content: space-around;
+  padding: 0px !important;
+  border-radius: 0px !important;
+  margin: var(--chakra-space-1) 0px !important;
+  color: #22aa22 !important;
+  border: 1px dotted #22aa22 !important;
+  background: rgb(34 170 34 / 10%) !important;
+}
+.started-task{
+  display: flex;
+  justify-content: space-around;
+  padding: 0px !important;
+  border-radius: 0px !important;
+  margin: var(--chakra-space-1) 0px !important;
+  color: #3e79f1;
+  border: 1px dotted #3e79f1 !important;
+  background: rgb(62 121 241 / 10%) !important;
+}
+.not-started-task{
+  display: flex;
+  justify-content: space-around;
+  padding: 0px !important;
+  border-radius: 0px !important;
+  margin: var(--chakra-space-1) 0px !important;
+  color: #ff5858;
+  border: 1px dotted #ff5858 !important;
+  background: rgb(255 88 88 / 10%) !important;
+}
+.rolled-over-task{
+  display: flex;
+  justify-content: space-around;
+  padding: 0px !important;
+  border-radius: 0px !important;
+  margin: var(--chakra-space-1) 0px !important;
+  color: #ffb900;
+  border: 1px dotted #ffb900 !important;
+  background: rgb(255 185 0 / 10%) !important;
+}
+
+.fc .fc-button-primary{
+  color: #673ef0 !important;
+  background-color: white !important;
+  border-color: #673ef0 !important;
+  border: 1px dotted;
+  padding: 3px 8px;
+}
+.fc .fc-button-primary:hover{
+  border: 2px dotted !important;
+  padding: 2px 7px;
+}
+.fc-button-primary{
+  color: #673ef0 !important;
+  background-color: white !important;
+  border-color: #673ef0 !important;
+  border: 1px dotted;
+  padding: 3px 8px;
+}
+.fc-button-primary:hover{
+  border: 2px dotted !important;
+  padding: 2px 7px;
+}
