@@ -1,8 +1,6 @@
 import { DbAuthHandler, PasswordValidationError } from '@redwoodjs/api'
-import { sendEmail } from 'src/lib/email'
-import { db } from 'src/lib/db'
 
-// const nodemailer = require('nodemailer') //added nodemailer
+import { db } from 'src/lib/db'
 
 export const handler = async (event, context) => {
   const forgotPasswordOptions = {
@@ -18,18 +16,11 @@ export const handler = async (event, context) => {
     // You could use this return value to, for example, show the email
     // address in a toast message so the user will know it worked and where
     // to look for the email.
-    // testing forgor password
-    handler: async (user) => {
-      const res = await sendEmail({
-      to: user.email,
-      subject: 'Road to Success Reset Password',
-      text: `Hello, there!\nHere is the link to reset your password. Do not share this with anyone!: localhost:8910/reset-password?resetToken=${user.resetToken}`,
-      html: `<div><h2>Reset Password</h2><p>Hello!\nClick or paste this link into your browser to reset your account password. Do not share this with anyone!</p><p><a href="localhost:8910/reset-password?resetToken=${user.resetToken}">localhost:8910/reset-password?resetToken=${user.resetToken}</a></p></div>`,
-      })
-      return res
-      },
 
-    // end testing forgor password
+    handler: (user) => {
+      return user
+    },
+
     // How long the resetToken is valid for, in seconds (default is 24 hours)
     expires: 60 * 60 * 24,
 
@@ -145,7 +136,7 @@ export const handler = async (event, context) => {
 
       if (!_password.match(passwordRegEx)) {
         throw new PasswordValidationError(
-          'Password should contain atleast one number, uppercase character, and one special character'
+          'password should contain atleast one number and one special character'
         )
       }
       return true
