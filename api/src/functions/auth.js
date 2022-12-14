@@ -29,7 +29,7 @@ export const handler = async (event, context) => {
       })
       return res
 
-    
+    },
     // How long the resetToken is valid for, in seconds (default is 24 hours)
     expires: 60 * 60 * 24,
 

@@ -23,7 +23,7 @@
   },
   "packageManager": "yarn@3.2.3",
   "dependencies": {
-    "@auth0/auth0-spa-js": "^2.0.0",
+    "@auth0/auth0-spa-js": "^2.0.1",
     "@chakra-ui/icons": "^2.0.13",
     "@chakra-ui/react": "^2.3.6",
     "@emotion/react": "^11.10.5",

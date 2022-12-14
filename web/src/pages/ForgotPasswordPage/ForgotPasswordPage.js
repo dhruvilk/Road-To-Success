@@ -42,7 +42,10 @@ const ForgotPasswordPage = () => {
       <MetaTags title="Forgot Password" />
 
       <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+        <Toaster
+          data-testid="rw-toast"
+          toastOptions={{ className: 'rw-toast', duration: 6000 }}
+        />
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
             <header className="rw-segment-header">
@@ -53,7 +56,11 @@ const ForgotPasswordPage = () => {
 
             <div className="rw-segment-main">
               <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
+                <Form
+                  onSubmit={onSubmit}
+                  data-testid="form"
+                  className="rw-form-wrapper"
+                >
                   <div className="text-left">
                     <Label
                       name="username"

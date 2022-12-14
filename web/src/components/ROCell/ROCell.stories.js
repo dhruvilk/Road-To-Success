@@ -1,5 +1,5 @@
-import { Loading, Empty, Failure, Success } from './CalendarCell'
-import { standard } from './CalendarCell.mock'
+import { Loading, Empty, Failure, Success } from './RoCell'
+import { standard } from './RoCell.mock'
 
 export const loading = () => {
   return Loading ? <Loading /> : <></>
@@ -17,4 +17,4 @@ export const success = (args) => {
   return Success ? <Success {...standard()} {...args} /> : <></>
 }
 
-export default { title: 'Cells/CalendarCell' }
+export default { title: 'Cells/RoCell' }

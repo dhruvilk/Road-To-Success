@@ -51,4 +51,6 @@ describe('tasks', () => {
 
     expect(result).toEqual(null)
   })
+
+  scenario('attempts to rollover', async (scenario) => {})
 })
