@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
-
+import { useMutation } from '@redwoodjs/web'
 import { useAuth } from '@redwoodjs/auth'
 import { Form, Label, TextField, Submit, FieldError } from '@redwoodjs/forms'
-import { navigate, routes } from '@redwoodjs/router'
+import { navigate, routes, Link } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
@@ -30,7 +30,7 @@ const ForgotPasswordPage = () => {
       // been invoked, let the user know how to get the link to reset their
       // password (sent in email, perhaps?)
       toast.success(
-        'A link to reset your password was sent to ' + response.email
+        'A link to reset your password was sent to ' + response.envelope.to[0]
       )
 
       navigate(routes.login())
@@ -67,7 +67,7 @@ const ForgotPasswordPage = () => {
                       className="rw-label"
                       errorClassName="rw-label rw-label-error"
                     >
-                      Username
+                      E-mail
                     </Label>
                     <TextField
                       name="username"

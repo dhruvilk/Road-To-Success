@@ -1,5 +1,6 @@
 # Readme
 
+
 Sergio Acevedo, security team (08) readme file. Teammates include Dhruvil Kansara, and Thomas Bethea.
 
 Worked with Dhruv and Tom to get account creations/logins working properly. Doing research together/on our own, but most of the coding was done on Dhruv's computer. We went from trying to use Auth0 for the authenticaion, to OAuth, since Auth0 would require for the user to log in twice. After doing enough research, and trying to get the creation of account feature working properly, we ended up on Redwoods on dbAuth, which has some skeletons for more features to be coded into the app.
