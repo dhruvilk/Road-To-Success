@@ -1,6 +1,7 @@
 import { useRef } from 'react'
-// import { useEffect } from 'react'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+
+import { gapi } from 'gapi-script'
 
 import { useAuth } from '@redwoodjs/auth'
 import {
@@ -16,16 +17,25 @@ import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 const LoginPage = () => {
-  const [profile, setProfile] = useState(null)
+  const clientId = process.env.CLIENT_ID
+  useEffect(() => {
+    const initClient = () => {
+      gapi.client.init({
+        clientId: clientId,
+        scope: '',
+      })
+    }
+    gapi.load('client:auth2', initClient)
+  })
 
-  const onSuccess = (res) => {
-    setProfile(res.profileObj)
-    console.log('Login Success: currentUser:', res.profileObj)
-  }
+  // const onSuccess = (res) => {
+  //   setProfile(res.profileObj)
+  //   console.log('Login Success: currentUser:', res.profileObj)
+  // }
 
-  const onFailure = (err) => {
-    console.log('failed', err)
-  }
+  // const onFailure = (err) => {
+  //   console.log('failed', err)
+  // }
 
   const { isAuthenticated, logIn } = useAuth()
 
