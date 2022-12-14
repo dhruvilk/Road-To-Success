@@ -64,13 +64,13 @@ const ProfilePage = () => {
                 <tr>
                   <td> First Name</td>
                   <td>:</td>
-                  <td>(Ray) </td>
+                  <td>(___) </td>
                 </tr>
 
                 <tr>
                   <td> Last Name</td>
                   <td>:</td>
-                  <td>(Otoadese)</td>
+                  <td>(____)</td>
                 </tr>
                 <tr>
                   <td>Current Password</td>
